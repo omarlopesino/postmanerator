@@ -18,6 +18,8 @@ func curlSnippet(request postman.Request) string {
 			curlSnippet += ` -H "Content-Type: application/x-www-form-urlencoded"`
 		} else if request.PayloadType == "params" || request.PayloadType == "formdata" {
 			curlSnippet += ` -H "Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"`
+		} else if request.PayloadType == "graphql" {
+			curlSnippet += ` -H "Content-Type: application/json"`
 		}
 	}
 
@@ -40,6 +42,10 @@ func curlSnippet(request postman.Request) string {
 					curlSnippet += fmt.Sprintf(` -F "%v=%v"`, data.Key, data.Value)
 				}
 			}
+		} else if request.PayloadType == "graphql" {
+			// Query and variables breaklines are removed
+			// as curl may not interpret correctly the JSON.
+			curlSnippet += fmt.Sprintf(" --data '{\"query\": \"%s\", \"variables\": %s}'", strings.Replace(request.PayloadGraphQL.Query, "\n", " ", -1), strings.Replace(request.PayloadGraphQL.Variables, "\n", " ", -1))
 		}
 	}
 

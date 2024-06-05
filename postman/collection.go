@@ -9,18 +9,19 @@ type Collection struct {
 }
 
 type Request struct {
-	ID            string
-	Name          string
-	Description   string
-	Method        string
-	URL           string
-	PayloadType   string
-	PayloadRaw    string
-	PayloadParams []KeyValuePair
-	PathVariables []KeyValuePair
-	Headers       []KeyValuePair
-	Responses     []Response
-	Tests         string
+	ID             string
+	Name           string
+	Description    string
+	Method         string
+	URL            string
+	PayloadType    string
+	PayloadRaw     string
+	PayloadGraphQL GraphQLBody
+	PayloadParams  []KeyValuePair
+	PathVariables  []KeyValuePair
+	Headers        []KeyValuePair
+	Responses      []Response
+	Tests          string
 }
 
 type Response struct {
@@ -57,4 +58,9 @@ type KeyValuePair struct {
 	Key         string
 	Value       interface{}
 	Description string
+}
+
+type GraphQLBody struct {
+	Query string `json:"query,omiempty"`
+	Variables string `json:"variables,omiempty"`
 }

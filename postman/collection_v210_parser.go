@@ -63,6 +63,7 @@ func (p *CollectionV210Parser) computeItem(parentFolder *Folder, items []collect
 				URL:           item.Request.Url.Raw,
 				PayloadType:   item.Request.Body.Mode,
 				PayloadRaw:    item.Request.Body.Raw,
+				PayloadGraphQL: item.Request.Body.GraphQL,
 				Tests:         p.parseRequestTests(item),
 				PathVariables: p.parseRequestPathVariables(item),
 				PayloadParams: p.parseRequestPayloadParams(item),

@@ -22,6 +22,7 @@ type collectionV210Item struct {
 			Raw        string                       `json:"raw"`
 			FormData   []collectionV210KeyValuePair `json:"formdata,omitempty"`
 			UrlEncoded []collectionV210KeyValuePair `json:"urlencoded,omitempty"`
+			GraphQL GraphQLBody `json:"graphql,omitempty"`
 		} `json:"body"`
 		Url struct {
 			Raw      string                       `json:"raw"`
