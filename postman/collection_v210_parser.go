@@ -56,19 +56,19 @@ func (p *CollectionV210Parser) computeItem(parentFolder *Folder, items []collect
 			parentFolder.Folders = append(parentFolder.Folders, folder)
 		} else { // item is a request
 			request := Request{
-				ID:            uuid.NewV4().String(),
-				Name:          item.Name,
-				Description:   item.Request.Description,
-				Method:        item.Request.Method,
-				URL:           item.Request.Url.Raw,
-				PayloadType:   item.Request.Body.Mode,
-				PayloadRaw:    item.Request.Body.Raw,
+				ID:             uuid.NewV4().String(),
+				Name:           item.Name,
+				Description:    item.Request.Description,
+				Method:         item.Request.Method,
+				URL:            item.Request.Url.Raw,
+				PayloadType:    item.Request.Body.Mode,
+				PayloadRaw:     item.Request.Body.Raw,
 				PayloadGraphQL: item.Request.Body.GraphQL,
-				Tests:         p.parseRequestTests(item),
-				PathVariables: p.parseRequestPathVariables(item),
-				PayloadParams: p.parseRequestPayloadParams(item),
-				Headers:       p.parseRequestHeaders(item, options),
-				Responses:     p.parseRequestResponses(item, options),
+				Tests:          p.parseRequestTests(item),
+				PathVariables:  p.parseRequestPathVariables(item),
+				PayloadParams:  p.parseRequestPayloadParams(item),
+				Headers:        p.parseRequestHeaders(item, options),
+				Responses:      p.parseRequestResponses(item, options),
 			}
 			parentFolder.Requests = append(parentFolder.Requests, request)
 		}
